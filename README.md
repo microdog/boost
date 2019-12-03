@@ -68,7 +68,7 @@ forward:github.com/coredns/coredns/plugin/pforward
 ---
 
 ```
-$ ./coredns
+$ sudo ./coredns
 .:55
 CoreDNS-1.6.5
 darwin/amd64, go1.13.4, 2503df90-dirty
