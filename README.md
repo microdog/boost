@@ -44,7 +44,7 @@ boost:github.com/microdog/boost
 # ...
 
 # Replace the built-in forward plugin
-forward:github.com/coredns/coredns/plugin/pforward
+forward:github.com/microdog/pforward
 #forward:forward
 
 # ...
