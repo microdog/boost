@@ -39,6 +39,10 @@ func (w *ResponseWriter) WriteMsg(res *dns.Msg) error {
 		return w.ResponseWriter.WriteMsg(res)
 	}
 
+	if w.Debug {
+		log.Debugf("original response:\n\t%s",strings.TrimSpace(strings.ReplaceAll(res.String(), "\n", "\n\t")))
+	}
+
 	answersMap := make(map[string]Ans)
 	for _, rr := range res.Answer {
 		switch rr.Header().Rrtype {
@@ -80,6 +84,7 @@ func (w *ResponseWriter) WriteMsg(res *dns.Msg) error {
 		var best Ans
 		ok := methods[w.Boost.Method](w.Boost, answers, &best)
 		if ok {
+			best.RR.Header().Name = res.Question[0].Name
 			res.Answer = []dns.RR{best.RR}
 		}
 	}
